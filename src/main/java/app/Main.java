@@ -17,10 +17,17 @@ public class Main {
     }
 
     private static double getAmount() {
-        System.out.printf("Balance is USD %.2f.%n" +
-                "Enter purchase amount, USD: ", balance);
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextDouble();
+        while (true) {
+            System.out.printf("Balance is USD %.2f.%n" +
+                    "Enter purchase amount, USD: ", balance);
+            String input = scanner.nextLine();
+            try {
+                return Double.parseDouble(input);
+            } catch (NumberFormatException exception) {
+                System.out.println("Please, try again and enter the amount: ");
+            }
+        }
     }
 
     private static void validateAmount(double balance, double withdrawal) {
